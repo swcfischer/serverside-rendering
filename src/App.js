@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import React, { useState, useCallback } from 'react';
+
 import './App.css';
 
-function App() {
+function App(props) {
+  const [num, setNum] = useState(0);
+
+  const increase = useCallback((e) => {
+    e.preventDefault();
+    setNum(num + 1);
+  });
+
+  const decrease = useCallback((e) => {
+    e.preventDefault();
+    setNum(num - 1);
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{num}</h1>
+      <button onClick={increase}>Increase</button>
+      <button onClick={decrease}>Decrease</button>
     </div>
   );
 }
